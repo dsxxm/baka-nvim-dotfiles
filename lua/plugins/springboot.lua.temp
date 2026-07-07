@@ -1,0 +1,24 @@
+return {
+  {
+    "mason-org/mason.nvim",
+    optional = true,
+    opts = { ensure_installed = { "vscode-spring-boot-tools" } },
+  },
+  {
+    "JavaHello/spring-boot.nvim",
+    ft = { "yaml", "properties" },
+    dependencies = { "mfussenegger/nvim-jdtls" },
+    opts = {
+      java_cmd = "/usr/lib/jvm/java-21-openjdk/bin/java",
+    },
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    opts = {
+      jdtls = function(config)
+        vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
+        return config
+      end,
+    },
+  },
+}
