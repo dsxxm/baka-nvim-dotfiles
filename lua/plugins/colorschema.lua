@@ -5,7 +5,7 @@ return {
   priority = 1000, -- 设置一个较高的优先级，确保主题的highlight组能覆盖其他插件[reference:2]
   opts = {
     flavour = "mocha", -- 风味选择: latte, frappe, macchiato, mocha
-    transparent_background = true, -- 开启透明背景，这是开启透明的关键
+    transparent_background = not vim.g.neovide, -- Neovide 用实色背景，终端保持透明
     -- 其它你需要的配置...
   },
   config = function(_, opts)

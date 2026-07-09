@@ -20,6 +20,16 @@ return {
       },
     },
     image = {},
+    terminal = {
+      win = {
+        relative = "editor",
+        position = "float",
+        width = 0.9,
+        height = 0.85,
+        border = "rounded",
+        backdrop = 60,
+      },
+    },
   },
   scroll = {
     enabled = true, -- 开启平滑滚动
