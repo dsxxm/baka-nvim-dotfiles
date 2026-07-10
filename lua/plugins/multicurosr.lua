@@ -5,34 +5,33 @@ return {
     local mc = require("multicursor-nvim")
     mc.setup()
 
-    local set = vim.keymap.set
+    vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse, { desc = "Multicursor mouse add" })
+    vim.keymap.set("n", "<c-leftdrag>", mc.handleMouseDrag, { desc = "Multicursor mouse drag" })
+    vim.keymap.set("n", "<c-leftrelease>", mc.handleMouseRelease, { desc = "Multicursor mouse release" })
+    vim.keymap.set("n", "<leader>n", mc.addCursor, { desc = "Multicursor add cursor" })
 
-    set("n", "<c-leftmouse>", mc.handleMouse)
-    set("n", "<c-leftdrag>", mc.handleMouseDrag)
-    set("n", "<c-leftrelease>", mc.handleMouseRelease)
-
-    set("n", "<leader>n", function()
-      mc.addCursor()
-    end)
-
-    mc.addKeymapLayer(function(layerSet)
-      -- Enable and clear cursors using escape.
-      layerSet("n", "<esc>", function()
-        if not mc.cursorsEnabled() then
-          mc.enableCursors()
-        else
+    mc.addKeymapLayer(function(layer_set)
+      layer_set("n", "<esc>", function()
+        if mc.cursorsEnabled() then
           mc.clearCursors()
+        else
+          mc.enableCursors()
         end
       end)
     end)
 
-    local hl = vim.api.nvim_set_hl
-    hl(0, "MultiCursorCursor", { reverse = true })
-    hl(0, "MultiCursorVisual", { link = "Visual" })
-    hl(0, "MultiCursorSign", { link = "SignColumn" })
-    hl(0, "MultiCursorMatchPreview", { link = "Search" })
-    hl(0, "MultiCursorDisabledCursor", { reverse = true })
-    hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
-    hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+    local highlights = {
+      MultiCursorCursor = { reverse = true },
+      MultiCursorDisabledCursor = { reverse = true },
+      MultiCursorDisabledSign = { link = "SignColumn" },
+      MultiCursorDisabledVisual = { link = "Visual" },
+      MultiCursorMatchPreview = { link = "Search" },
+      MultiCursorSign = { link = "SignColumn" },
+      MultiCursorVisual = { link = "Visual" },
+    }
+
+    for group, opts in pairs(highlights) do
+      vim.api.nvim_set_hl(0, group, opts)
+    end
   end,
 }

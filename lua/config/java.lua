@@ -1,0 +1,3 @@
+return {
+  executable = "/usr/lib/jvm/java-21-openjdk/bin/java",
+}
