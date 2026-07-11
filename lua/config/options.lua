@@ -24,3 +24,5 @@ if vim.g.neovide then
     end, { desc = opts.desc })
   end
 end
+
+vim.opt.updatetime = 150
