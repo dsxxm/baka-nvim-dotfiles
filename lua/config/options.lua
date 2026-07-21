@@ -29,3 +29,4 @@ vim.opt.updatetime = 150
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
+vim.opt.expandtab = false

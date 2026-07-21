@@ -22,6 +22,14 @@ return {
         { section = "keys", gap = 1, padding = 1 },
       },
     },
+    picker = {
+      sources = {
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
+      },
+    },
     image = {},
     scroll = {
       enabled = false,
