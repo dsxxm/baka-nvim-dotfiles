@@ -16,18 +16,6 @@ return {
         }),
       }
 
-      opts.scroll = {
-        enable = true,
-        timing = animate.gen_timing.exponential({
-          easing = "out",
-          duration = 220,
-          unit = "total",
-        }),
-        subscroll = animate.gen_subscroll.equal({
-          max_output_steps = 120,
-        }),
-      }
-
       opts.resize = {
         enable = true,
         timing = animate.gen_timing.linear({
