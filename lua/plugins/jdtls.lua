@@ -1,25 +1,14 @@
 local java = require("config.java")
 local utils = require("config.utils")
 
-local function spring_boot_bundles()
-  local ok, spring_boot = pcall(require, "spring_boot")
-  return ok and spring_boot.java_extensions() or {}
-end
-
-local function append_bundles(config, bundles)
-  config.init_options = config.init_options or {}
-  config.init_options.bundles = utils.extend_unique(vim.deepcopy(config.init_options.bundles or {}), bundles)
-end
-
-local function enable_debug_code_lens(config)
-  config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
-    java = {
-      debug = {
-        settings = {
-          enableRunDebugCodeLens = true,
-        },
-      },
-    },
+local function jdtls_cmd(opts)
+  return utils.extend_unique(opts.cmd or { vim.fn.exepath("jdtls") }, {
+    "--java-executable=" .. java.executable,
+    "--jvm-arg=-Xms2g",
+    "--jvm-arg=-Xmx4g",
+    "--jvm-arg=-XX:+UseG1GC",
+    "--jvm-arg=-XX:MaxGCPauseMillis=200",
+    "--jvm-arg=-XX:+UseStringDeduplication",
   })
 end
 
@@ -35,28 +24,33 @@ local function apply_user_config(config, user_jdtls)
   return config
 end
 
+local function tune_jdtls(config)
+  config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
+    java = {
+      autobuild = { enabled = false },
+      configuration = { updateBuildConfiguration = "disabled" },
+      implementationsCodeLens = { enabled = false },
+      referencesCodeLens = { enabled = false },
+    },
+  })
+
+  return config
+end
+
 return {
   {
     "mfussenegger/nvim-jdtls",
     opts = function(_, opts)
-      opts.cmd = opts.cmd or { vim.fn.exepath("jdtls") }
+      opts.cmd = jdtls_cmd(opts)
+      opts.dap = false
+      opts.dap_main = false
+      opts.test = false
 
-      local java_arg = "--java-executable=" .. java.executable
-      if not vim.tbl_contains(opts.cmd, java_arg) then
-        table.insert(opts.cmd, java_arg)
-      end
-
-      local bundles = spring_boot_bundles()
       local user_jdtls = opts.jdtls
 
       opts.jdtls = function(config)
-        config = config or {}
-
-        enable_debug_code_lens(config)
-        config = apply_user_config(config, user_jdtls)
-        append_bundles(config, bundles)
-
-        return config
+        config = tune_jdtls(config or {})
+        return apply_user_config(config, user_jdtls)
       end
     end,
   },
