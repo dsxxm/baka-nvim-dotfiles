@@ -25,7 +25,7 @@ if vim.g.neovide then
   end
 end
 
-vim.opt.updatetime = 150
+vim.opt.updatetime = 300
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true

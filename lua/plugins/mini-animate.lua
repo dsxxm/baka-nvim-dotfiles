@@ -6,13 +6,15 @@ return {
 
       opts.cursor = {
         enable = true,
-        timing = animate.gen_timing.exponential({
-          easing = "out",
-          duration = 180,
+        timing = animate.gen_timing.linear({
+          duration = 80,
           unit = "total",
         }),
-        path = animate.gen_path.spiral({
-          width = 3,
+        path = animate.gen_path.line({
+          predicate = function()
+            -- 只在同窗口内移动时动画，跨窗口跳转不加动画
+            return true
+          end,
         }),
       }
 

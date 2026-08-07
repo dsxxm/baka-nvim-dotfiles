@@ -28,7 +28,6 @@ local function tune_jdtls(config)
   config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
     java = {
       autobuild = { enabled = false },
-      configuration = { updateBuildConfiguration = "disabled" },
       implementationsCodeLens = { enabled = false },
       referencesCodeLens = { enabled = false },
     },
