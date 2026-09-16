@@ -4,20 +4,7 @@ return {
     opts = function(_, opts)
       local animate = require("mini.animate")
 
-      opts.cursor = {
-        enable = true,
-        timing = animate.gen_timing.linear({
-          duration = 80,
-          unit = "total",
-        }),
-        path = animate.gen_path.line({
-          predicate = function()
-            -- 只在同窗口内移动时动画，跨窗口跳转不加动画
-            return true
-          end,
-        }),
-      }
-
+      opts.cursor = { enable = false }
       opts.resize = {
         enable = true,
         timing = animate.gen_timing.linear({
