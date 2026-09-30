@@ -25,6 +25,8 @@ if vim.g.neovide then
   end
 end
 
+vim.opt.termguicolors = true
+
 vim.opt.updatetime = 300
 vim.opt.wrap = true
 vim.opt.linebreak = true
