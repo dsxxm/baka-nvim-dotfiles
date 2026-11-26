@@ -31,9 +31,6 @@ return {
     scroll = {
       enabled = false,
     },
-    statuscolumn = {
-      enabled = true,
-    },
     terminal = {
       win = {
         relative = "editor",

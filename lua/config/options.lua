@@ -29,6 +29,8 @@ vim.opt.termguicolors = true
 
 vim.opt.updatetime = 300
 vim.opt.wrap = true
+vim.opt.numberwidth = 2
+vim.opt.statuscolumn = ""
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.expandtab = false

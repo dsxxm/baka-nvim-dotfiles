@@ -5,6 +5,7 @@ vim.keymap.set("n", "<leader>ch", function()
   Snacks.terminal("hunk diff --watch", { cwd = vim.uv.cwd() })
 end, { desc = "toggle hunk" })
 
+
 vim.keymap.set("v", "<leader>yl", function()
   local path = vim.fn.expand("%:.")
   if path == "" then

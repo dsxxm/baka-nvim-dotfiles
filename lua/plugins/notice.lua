@@ -12,6 +12,18 @@ return {
           },
         },
       },
+      routes = {
+        {
+          filter = {
+            event = "lsp",
+            kind = "progress",
+            cond = function(message)
+              return message.opts.progress and message.opts.progress.client == "jdtls"
+            end,
+          },
+          opts = { skip = true },
+        },
+      },
       lsp = {
         hover = {
           -- Set not show a message if hover is not available

@@ -28,6 +28,12 @@ local function tune_jdtls(config)
   config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
     java = {
       autobuild = { enabled = false },
+      format = {
+        settings = {
+          url = vim.fn.stdpath("config") .. "/formatter/eclipse-java.xml",
+          profile = "Neovim",
+        },
+      },
       implementationsCodeLens = { enabled = false },
       referencesCodeLens = { enabled = false },
     },
