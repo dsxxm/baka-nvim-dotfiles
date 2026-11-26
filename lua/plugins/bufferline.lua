@@ -1,6 +1,6 @@
 local colors = {
   background = "#181818",
-  tabline = "#101010",
+  tabline = "#181818",
   surface = "#282828",
   foreground = "#e4e4e4",
   muted = "#565f73",
