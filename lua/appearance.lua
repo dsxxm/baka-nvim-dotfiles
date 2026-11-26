@@ -3,6 +3,7 @@ local module = {}
 function module.apply_appearance()
   -- 清掉常见窗口和浮窗底色
   local transparent_groups = {
+    "Normal",
     "CursorLine",
     "NormalNC",
     "NormalFloat",
