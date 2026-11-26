@@ -28,6 +28,14 @@ return {
       SnacksPickerInput = { bg = colors.background, fg = colors.foreground },
       SnacksPickerInputBorder = { bg = colors.background, fg = colors.border },
       SnacksPickerInputTitle = { bg = colors.background, fg = colors.foreground, bold = true },
+      WhichKeyNormal = { bg = colors.background, fg = colors.foreground },
+      WhichKeyBorder = { bg = colors.background, fg = colors.border },
+      WhichKeyTitle = { bg = colors.background, fg = colors.foreground, bold = true },
+      WhichKey = { fg = "#ffdd33" },
+      WhichKeySeparator = { fg = "#cc8c3c" },
+      WhichKeyGroup = { fg = "#73d936" },
+      WhichKeyDesc = { fg = colors.foreground },
+      WhichKeyValue = { fg = "#95a99f" },
     }
 
     for group, style in pairs(highlights) do
